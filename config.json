@@ -12,7 +12,7 @@
   },
   "layers": {
     "storiesLayerUrl": "https://lyre.cofc.edu/server/rest/services/Hosted/public_map_input/FeatureServer/0",
-    "indexLayerUrl": "https://lyre.cofc.edu/server/rest/services/shoc/map_index/FeatureServer/0"
+    "indexLayerUrl": "https://portal1-geo.sabu.mtu.edu/server/rest/services/Hosted/map_index/FeatureServer/0"
   },
   "markers": {
     "storyMarkerUrl": "assets/marker_story.png",
