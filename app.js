@@ -993,7 +993,7 @@ fetch('config.json')
                                     graphics = results.features;
 
                                     // Sort the features first by title, then by year  
-                                    graphics.sort(function(a, b) {
+                                    graphics.sort(function(b, a) {
                                         return a.attributes.title.localeCompare(b.attributes.title) || a.attributes.mapyear - b.attributes.mapyear;
                                     });
 
