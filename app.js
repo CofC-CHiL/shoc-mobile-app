@@ -993,8 +993,8 @@ fetch('config.json')
                                     graphics = results.features;
 
                                     // Sort the features first by title, then by year  
-                                    graphics.sort(function(b, a) {
-                                        return a.attributes.title.localeCompare(b.attributes.title) || a.attributes.mapyear - b.attributes.mapyear;
+                                    graphics.sort(function(a, b) {
+                                        return a.attributes.mapyear.localeCompare(b.attributes.mapyear) || a.attributes.title - b.attributes.title;
                                     });
 
                                     document.getElementById("mapcount").innerHTML = results.features.length;
