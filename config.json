@@ -6,7 +6,7 @@
   },
   "navbar": {
     "title": "SHOC Mobile App",
-    "backgroundColor": "#f7dfad",
+    "backgroundColor": "#dbceac",
     "logo": "assets/shoc_logo_250px.png",
     "textColor": "#660000"  
   },
