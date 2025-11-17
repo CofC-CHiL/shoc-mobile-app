@@ -392,11 +392,11 @@ fetch('config.json')
                     document.getElementById("pictures").innerHTML = "";
                     document.getElementById("videos").innerHTML = "";
                     document.getElementById("sound").innerHTML = "";
-                    const objectId = graphic.attributes.objectid;
-                    const title = graphic.attributes.title;
-                    const desc = linkifyHtml(graphic.attributes.description);
-                    const date = graphic.attributes.userdate;
-                    const name = graphic.attributes.name;
+                    const objectId = graphic.attributes.OBJECTID;
+                    const title = graphic.attributes.place_desc;
+                    const desc = linkifyHtml(graphic.attributes.place_desc);
+                    const date = graphic.attributes.source_year;
+                    const name = graphic.attributes.curr_address_no;
                     $('#subtitle').html(date);
                     $('#storydesc').html(desc);
                     $('#storytitle').html(title);
@@ -624,12 +624,12 @@ fetch('config.json')
                     // create a new feature to add using the REST API
                     const featureToAdd = {
                         attributes: {
-                            title: place_desc,
-                            description: place_desc,
-                            name: orig_city,
-                            userdate: curr_city,
-                            map: map_url,
-                        },
+                            title: title, 
+                            description: desc,
+                            name: name,
+                            userdate: date, 
+                            map: currentMapUrl, 
+},
                         geometry: {
                             x: lon,
                             y: lat,
@@ -764,7 +764,7 @@ fetch('config.json')
                 // Layer for the story points
                 const storyLayer = new FeatureLayer({
                     url: config.layers.storiesLayerUrl,
-                    outFields: ["place_desc", "orig_city", "curr_city", "map_url"], // Return all fields so it can be queried client-side        
+                    outFields: ["title", "description", "name", "userdate", "objectid", "globalid", "map"], // Return all fields so it can be queried client-side        
                     renderer: storiesRenderer,
                     definitionExpression: "flag IS NULL",
                     visible: true
