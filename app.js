@@ -392,11 +392,12 @@ fetch('config.json')
                     document.getElementById("pictures").innerHTML = "";
                     document.getElementById("videos").innerHTML = "";
                     document.getElementById("sound").innerHTML = "";
-                    const objectId = graphic.attributes.OBJECTID;
-                    const title = graphic.attributes.place_desc;
-                    const desc = linkifyHtml(graphic.attributes.place_desc);
-                    const date = graphic.attributes.source_year;
-                    const name = graphic.attributes.curr_address_no;
+                    const objectid = graphic.attributes.OBJECTID;
+                    const place_desc = graphic.attributes.place_desc;
+                    const source_year = graphic.attributes.source_year;
+                    const curr_address_no = graphic.attributes.curr_address_no;
+                    const globalid = graphic.attributes.GlobalID;
+                    const map_url = graphic.attributes.map_url;
                     $('#subtitle').html(date);
                     $('#storydesc').html(desc);
                     $('#storytitle').html(title);
@@ -764,7 +765,7 @@ fetch('config.json')
                 // Layer for the story points
                 const storyLayer = new FeatureLayer({
                     url: config.layers.storiesLayerUrl,
-                    outFields: ["title", "description", "name", "userdate", "objectid", "globalid", "map"], // Return all fields so it can be queried client-side        
+                    outFields: ["place_desc", "source_year", "curr_address_no", "objectid", "globalid", "map_url"], 
                     renderer: storiesRenderer,
                     definitionExpression: "flag IS NULL",
                     visible: true
@@ -994,8 +995,21 @@ fetch('config.json')
 
                                     // Sort the features first by title, then by year  
                                     graphics.sort(function(a, b) {
-                                        return a.attributes.mapyear.localeCompare(b.attributes.mapyear) || a.attributes.title - b.attributes.title;
-                                    });
+    // Safely retrieve mapyear, defaulting to an empty string ("") if null/undefined
+    const yearA = a.attributes.mapyear || "";
+    const yearB = b.attributes.mapyear || "";
+    
+    // Safely retrieve title
+    const titleA = a.attributes.title || "";
+    const titleB = b.attributes.title || "";
+
+    // Sort primarily by mapyear (string comparison) and secondarily by title (string comparison)
+    const yearComparison = yearA.localeCompare(yearB);
+    if (yearComparison !== 0) {
+        return yearComparison;
+    }
+    return titleA.localeCompare(titleB);
+});
 
                                     document.getElementById("mapcount").innerHTML = results.features.length;
                                     let item;
