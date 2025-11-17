@@ -995,19 +995,21 @@ fetch('config.json')
 
                                     // Sort the features first by title, then by year  
                                     graphics.sort(function(a, b) {
-    // Safely retrieve mapyear, defaulting to an empty string ("") if null/undefined
+    // 1. Safely retrieve attributes, defaulting to empty string if null/undefined
     const yearA = a.attributes.mapyear || "";
     const yearB = b.attributes.mapyear || "";
-    
-    // Safely retrieve title
     const titleA = a.attributes.title || "";
     const titleB = b.attributes.title || "";
 
-    // Sort primarily by mapyear (string comparison) and secondarily by title (string comparison)
+    // 2. Compare years first
     const yearComparison = yearA.localeCompare(yearB);
+    
+    // If years are different, return the year comparison result
     if (yearComparison !== 0) {
         return yearComparison;
     }
+    
+    // 3. If years are the same (or both null/empty), compare titles
     return titleA.localeCompare(titleB);
 });
 
