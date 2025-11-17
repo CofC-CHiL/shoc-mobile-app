@@ -764,7 +764,7 @@ fetch('config.json')
                 // Layer for the story points
                 const storyLayer = new FeatureLayer({
                     url: config.layers.storiesLayerUrl,
-                    outFields: ["title", "description", "name", "userdate", "objectid", "globalid", "map"], // Return all fields so it can be queried client-side        
+                    outFields: ["place_desc", "orig_city", "curr_city", "map_url"], // Return all fields so it can be queried client-side        
                     renderer: storiesRenderer,
                     definitionExpression: "flag IS NULL",
                     visible: true
