@@ -624,11 +624,11 @@ fetch('config.json')
                     // create a new feature to add using the REST API
                     const featureToAdd = {
                         attributes: {
-                            title: title,
-                            description: desc,
-                            name: name,
-                            userdate: date,
-                            map: currentMapUrl,
+                            title: place_desc,
+                            description: place_desc,
+                            name: orig_city,
+                            userdate: curr_city,
+                            map: map_url,
                         },
                         geometry: {
                             x: lon,
